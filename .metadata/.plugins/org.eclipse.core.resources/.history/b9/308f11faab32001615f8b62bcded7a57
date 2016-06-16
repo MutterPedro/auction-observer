@@ -1,0 +1,44 @@
+package br.com.auction.view;
+
+import java.util.Scanner;
+
+import br.com.auction.observer.Bidder;
+import br.com.auction.subject.Auctioneer;
+
+public class Main {
+
+	public static void main(String[] args) {
+		final int NUM_BIDDERS = 5;
+		
+		Scanner reader = new Scanner(System.in);
+		System.out.println("Nome do item a venda: ");
+		String item = reader.next();
+		System.out.println("Lance inicial: ");
+		double initialBid = reader.nextDouble();
+		
+		Auctioneer auctioneer = new Auctioneer(item,initialBid);
+		Bidder[] bidders = null;
+		
+		for(int i=0;i<NUM_BIDDERS;i++){
+			bidders[i] = new Bidder(initialBid);
+			auctioneer.addObserver(bidders[i]);
+		}
+		
+		int times = 0;
+		int winner = 0;
+		while(times < 3){
+			for(int i=0;i<NUM_BIDDERS;i++){
+				double bid = bidders[i].tryNewBid();
+				if(auctioneer.coverBid(bid)){
+					bidders[i].setActualBid(bid);
+					bidders[i].setWinner(true);
+					winner = i+1;
+					times = 0;
+				}
+			}
+			times++;
+		}
+
+	}
+
+}

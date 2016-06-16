@@ -1,0 +1,14 @@
+package br.com.auction.subject;
+
+import java.util.Observable;
+
+public class Manager extends Observable implements Runnable{
+
+	private double bid;
+	@Override
+	public void run() {
+		
+		
+	}
+	
+}

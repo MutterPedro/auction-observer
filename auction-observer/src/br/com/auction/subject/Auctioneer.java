@@ -1,0 +1,43 @@
+package br.com.auction.subject;
+
+import java.util.Observable;
+
+public class Auctioneer extends Observable{
+
+	private double bid;
+	private String item;
+	
+	public Auctioneer(String item, double bid) {
+		super();
+		this.bid = bid;
+		this.item = item;
+	}
+
+	public double getBid() {
+		return bid;
+	}
+
+	public void setBid(double bid) {
+		this.bid = bid;
+	}
+
+	public String getItem() {
+		return item;
+	}
+
+	public void setItem(String item) {
+		this.item = item;
+	}
+	
+	public boolean coverBid(double newBid){
+		if(newBid > this.bid){
+			this.bid = newBid;
+			this.setChanged();
+			this.notifyObservers(newBid);
+			return true;
+		}
+		
+		return false;
+	}
+	
+}

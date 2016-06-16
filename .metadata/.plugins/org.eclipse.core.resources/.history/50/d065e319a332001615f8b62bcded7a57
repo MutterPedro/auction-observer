@@ -1,0 +1,52 @@
+package br.com.auction.observer;
+
+import java.util.Observable;
+import java.util.Observer;
+import java.util.Random;
+
+import br.com.auction.subject.Auctioneer;
+
+public class Bidder implements Observer{
+
+	private double bid;
+	private static double HIGHEST_BID; 
+	
+	public double getBid() {
+		return bid;
+	}
+
+	public void setBid(double bid) {
+		this.bid = bid;
+	}
+
+	public static double getHIGHEST_BID() {
+		return HIGHEST_BID;
+	}
+
+
+
+	public static void setHIGHEST_BID(double hIGHEST_BID) {
+		HIGHEST_BID = hIGHEST_BID;
+	}
+
+
+	public double tryNewBid(){
+		Random rand = new Random();
+		double randomBid = rand.nextDouble();
+		return randomBid;
+	}
+
+	@Override
+	public void update(Observable o, Object arg) {
+		this.setHIGHEST_BID((double) arg);		
+		Auctioneer auctioneer = (Auctioneer) o;
+		while(!auctioneer.coverBid(tryNewBid())){
+			try {
+			    Thread.sleep(1000);            
+			} catch(InterruptedException ex) {
+			    Thread.currentThread().interrupt();
+			}
+		}
+	}
+	
+}

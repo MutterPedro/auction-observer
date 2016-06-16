@@ -1,0 +1,16 @@
+package br.com.auction.observer;
+
+import java.util.Observable;
+import java.util.Observer;
+
+public class Bidder implements Observer{
+
+	private double bid;
+	private static double HIGHEST_BID; 
+	
+	@Override
+	public void update(Observable o, Object arg) {
+				
+	}
+	
+}

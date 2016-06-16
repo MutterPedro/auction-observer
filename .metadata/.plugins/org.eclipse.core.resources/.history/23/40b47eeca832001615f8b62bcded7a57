@@ -1,0 +1,16 @@
+package br.com.auction.view;
+
+import java.io.BufferedReader;
+
+import br.com.auction.subject.Auctioneer;
+
+public class Main {
+
+	public static void main(String[] args) {
+		
+		BuffredReader reader = new BufferedReader(System.in);
+		Auctioneer auctioneer = new
+
+	}
+
+}

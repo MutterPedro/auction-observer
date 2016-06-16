@@ -1,0 +1,25 @@
+package br.com.auction.view;
+
+import java.util.Scanner;
+
+import br.com.auction.observer.Bidder;
+import br.com.auction.subject.Auctioneer;
+
+public class Main {
+
+	public static void main(String[] args) {
+		
+		Scanner reader = new Scanner(System.in);
+		String item = reader.next();
+		double initialBid = reader.nextDouble();
+		
+		Auctioneer auctioneer = new Auctioneer(item,initialBid);
+		Bidder[] bidders;
+		
+		for(int i=0;i<5;i++){
+			bidders[i] = new Bidder(initialBid);
+		}
+
+	}
+
+}

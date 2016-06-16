@@ -1,0 +1,17 @@
+package br.com.auction.view;
+
+import java.util.Scanner;
+
+import br.com.auction.subject.Auctioneer;
+
+public class Main {
+
+	public static void main(String[] args) {
+		
+		Scanner reader = new Scanner(System.in);
+		Auctioneer auctioneer = new Auctioneer(reader.next(),reader.nextDouble());
+		Bidder[5] bidders;
+
+	}
+
+}

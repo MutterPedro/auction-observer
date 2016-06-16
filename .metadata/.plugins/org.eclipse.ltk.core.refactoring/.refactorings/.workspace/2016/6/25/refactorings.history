@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename Java project &apos;auction-gui&apos; to &apos;auction-observer&apos;&#x0A;- Original element: &apos;auction-gui&apos;&#x0A;- Renamed element: &apos;auction-gui&apos;&#x0A;- Update references to refactored element" description="Rename Java project &apos;auction-gui&apos;" flags="7" id="org.eclipse.jdt.ui.rename.java.project" input="=auction-gui" name="auction-observer" references="true" stamp="1466116202238" version="1.0"/>
+</session>

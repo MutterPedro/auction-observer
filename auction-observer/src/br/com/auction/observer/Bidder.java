@@ -1,0 +1,70 @@
+package br.com.auction.observer;
+
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.util.Observable;
+import java.util.Observer;
+import java.util.Random;
+
+import br.com.auction.subject.Auctioneer;
+
+public class Bidder implements Observer{
+
+	private double actualBid; 
+	private boolean winner;
+	private boolean interested;
+	
+	public Bidder(double actualBid) {
+		super();
+		this.actualBid = actualBid;
+		this.winner = false;
+		this.interested = true;
+	}
+
+	public double getActualBid() {
+		return actualBid;
+	}
+
+	public void setActualBid(double actualBid) {
+		this.actualBid = actualBid;
+	}
+
+	public boolean isWinner() {
+		return winner;
+	}
+
+	public void setWinner(boolean winner) {
+		this.winner = winner;
+	}
+
+	public boolean isInterested() {
+		return interested;
+	}
+
+	public void setInterested(boolean interested) {
+		this.interested = interested;
+	}
+
+	public double tryNewBid(){
+		if(!this.isInterested())
+			return 0.0;
+		if(this.isWinner())
+			return this.getActualBid();
+		
+		Random rand = new Random();
+		double randomBid = (rand.nextInt()+this.actualBid)%(10*this.actualBid);
+		BigDecimal bd = new BigDecimal(randomBid);
+	    bd = bd.setScale(2, RoundingMode.HALF_UP);
+	    return bd.doubleValue();		
+	}
+
+	@Override
+	public void update(Observable o, Object arg) {
+		Auctioneer auctioneer = (Auctioneer) o;
+		this.setWinner(false);
+		if(auctioneer.getBid() > this.actualBid *10){			
+			this.setInterested(false);
+		}
+	}
+	
+}
